@@ -1,0 +1,24 @@
+@import 'variables';
+
+@keyframes changeOpacity {
+  from { opacity: 0; }
+  to { opacity: 0.2; }
+}
+
+@keyframes moveLoaderLeftStripe {
+  from {
+    left: 0;
+  }
+  to {
+    left: 200% - $loader-stripe-width;
+  }
+}
+
+@keyframes moveLoaderRightStripe {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 100% - $loader-stripe-width;
+  }
+}

@@ -1,0 +1,46 @@
+// colours
+$cyan: #3fe6ff;
+$cerise: #ee587b;
+$white: #ffffff;
+$black: #000000;
+
+// fonts
+$main-font: 'Space Mono', 'Courier New', monospace;
+$second-font: 'Roboto', sans-serif;
+$global-font-size: 16px;
+$h1-menu-font-size: 16px;
+$h1-font-size: 32px;
+$h2-font-size: 24px;
+$p-font-size: 16px;
+$year-font-size: 12px;
+
+
+// breakpoints
+$sm: 480;
+$md: 720;
+$lg: 1024;
+$xl: 1600;
+
+
+$global-padding: 15px;
+
+
+$fixed-menu-height: 50px;
+$fixed-menu-top-padding: ($fixed-menu-height - $h1-menu-font-size * 2) / 2;
+$hamburger-line-height: 4px;
+$hamburger-padding: 15px;
+$hamburger-margin: ($fixed-menu-height - ($hamburger-line-height * 3 + $hamburger-padding * 2)) / 2;
+
+$introduction-block-height: 230px;
+
+$github-icon: 24px;
+
+$project-nav-height: 20px;
+$project-nav-width: 40px;
+
+
+$skill-block-height: 30px;
+
+$project-link-width: 120px;
+
+$loader-stripe-width: 15%;

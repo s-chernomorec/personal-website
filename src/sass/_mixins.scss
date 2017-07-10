@@ -1,0 +1,56 @@
+@mixin page-background($img, $width) {
+  background-image: url('../img/backgrounds/#{$img}-#{$width}.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@mixin position($pos, $horizontal, $vertical, $left, $top) {
+  position: $pos;
+  #{$vertical}: $top;
+  #{$horizontal}: $left;
+}
+
+@mixin clearfix() {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+// parent block should have position: relative and z-index: 1
+@mixin block-with-overlapping-borders($height, $width, $padding) {
+
+    height: $height;
+    width: $width;
+    padding: $padding;
+
+    &:before {
+      display: block;
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      height: $height;
+      width: 100%;
+      z-index: -1;
+      content: '';
+      background-color: transparent;
+      border: 2px solid $black;
+    }
+
+    &:after {
+      display: block;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      height: $height;
+      width: 100%;
+      z-index: 10;
+      content: '';
+      background-color: transparent;
+      border: 1px solid $white;
+    }
+}

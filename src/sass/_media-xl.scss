@@ -1,0 +1,252 @@
+@media only screen and (min-width : #{$xl}px) {
+
+  $global-font-size: 20px;
+  $h1-menu-font-size: 18px;
+  $h1-font-size: 42px;
+  $h2-font-size: 42px;
+  $p-font-size: 18px;
+  $year-font-size: 14px;
+
+  $global-padding: 50px;
+
+  $introduction-block-height: 270px;
+
+  $github-icon: 36px;
+
+  $fixed-menu-height: 100px;
+  $fixed-menu-top-padding: ($fixed-menu-height - $h1-menu-font-size * 2) / 2;
+
+  $project-nav-height: 26px;
+  $project-nav-width: 60px;
+
+  $skill-block-height: 40px;
+
+
+  h1.name {
+    font: $h1-menu-font-size $main-font;
+  }
+
+  h1.projects,
+  h1.skills {
+    font: $h1-font-size $main-font;
+    line-height: $h1-font-size;
+  }
+
+  h2 {
+    font: $h2-font-size $second-font;
+    font-weight: bold;
+  }
+
+  p {
+    font: $p-font-size $second-font;
+  }
+
+  .skills-wrapper,
+  .projects-wrapper {
+    font-size: $global-font-size;
+    max-width: 1020px;
+    margin: 0 auto;
+  }
+
+  .year {
+    font-size: $year-font-size;
+  }
+
+
+  //  backgrounds
+
+  .page {
+    padding: $global-padding;
+  }
+
+  .main-page { @include page-background(mountains, 1920); }
+
+  .projects-page { @include page-background(wall, 1920); }
+
+  .skills-page { @include page-background(rocks, 1920); }
+
+  //  fixed menu
+  .fixed-menu {
+    height: $fixed-menu-height;
+  }
+
+  .fixed-menu .name-block a {
+    margin: $fixed-menu-top-padding - 11px $global-padding 0 $global-padding;
+
+    padding: 0;
+    width: auto;
+    height: auto;
+
+    h1.name {
+      padding: 5px 2px 5px 10px;
+      line-height: $h1-menu-font-size + 6px;
+    }
+  }
+
+  .fixed-menu .hamburger {
+    display: none;
+  }
+
+  .fixed-menu .menu-desktop {
+    display: inline-block;
+    float: right;
+    height: 100%;
+
+    .menu-desktop-list {
+      @include clearfix();
+      display: block;
+      width: 100%;
+      height: 100%;
+      color: $white;
+
+      li {
+        display: block;
+        float: left;
+        margin-right: $global-padding * 3;
+        line-height: $fixed-menu-height;
+
+        a {
+          position: relative;
+          z-index: 5;
+          font-size: $global-font-size;
+
+
+          &:after {
+            @include position(absolute, left, top, 0, $global-font-size + 2px);
+            z-index: -1;
+            display: block;
+            height: 2px;
+            width: 100%;
+            content: "";
+            transition: all 0.3s ease-out;
+          }
+        }
+
+        a:hover {
+          &:after {
+            top: $global-font-size - 2px;
+            height: 6px;
+          }
+        }
+      }
+
+      .menu-desktop-projects a:after { background-color: $cyan; }
+      .menu-desktop-skills a:after { background-color: $cerise; }
+    }
+  }
+
+
+  .no-fixed {
+    position: absolute;
+    background-color: transparent;
+
+    .name-block a {
+
+      background-color: $black;
+
+      &:hover {
+        background-color: $white;
+
+        .name {
+          padding: 5px 2px 5px 10px;
+          color: $black;
+        }
+      }
+    }
+  }
+
+
+  //  main-page
+
+  .introduction-block {
+    @include block-with-overlapping-borders($introduction-block-height, 30%, 25px);
+    left: 50%;
+    margin-top: -$introduction-block-height / 2;
+
+    .photo {
+      margin: 30px auto 0 auto;
+    }
+  }
+
+  .main-footer .github {
+    @include position(absolute, right, bottom, 0, 0);
+    height: $github-icon;
+
+    a {
+      display: block;
+      height: $github-icon;
+      width: $github-icon;
+      background-image: url('../img/github.png');
+      background-size: contain;
+    }
+  }
+
+
+  //  PROJECTS
+
+  h1.projects,
+  h1.skills {
+    margin: $fixed-menu-height - 30px 0 20px 0;
+  }
+
+  .project-header .project-number {
+    height: $project-nav-height;
+    width: $project-nav-width;
+
+    div {
+      line-height: $project-nav-height;
+    }
+  }
+
+  .project-content {
+    margin-top: 20px;
+  }
+
+  .project-navigation {
+    margin-top: 30px;
+
+    .project-prev,
+    .project-next {
+      height: $project-nav-height;
+      width: $project-nav-width;
+    }
+  }
+
+  .project-placeholder {
+    font-size: $global-font-size;
+    line-height: $global-font-size;
+  }
+
+  .project-image-active:after {
+    width: $project-link-width;
+    transform: translate(-$project-link-width / 2, -20px);
+    font-size: $global-font-size;
+  }
+
+
+  //  SKILLS
+
+  .skill-block-container {
+
+    padding-bottom: $global-padding;
+
+    &:nth-child(odd) { padding-right: $global-padding / 2; }
+
+    &:nth-child(even) { padding-left: $global-padding / 2; }
+
+  }
+
+  .skill-block {
+    height: $skill-block-height;
+    line-height: $skill-block-height - 4px;
+  }
+
+  .skills-notice {
+    font-size: $global-font-size;
+  }
+
+  h2.project-name {
+    padding-left: 18px;
+  }
+
+}

@@ -1,0 +1,482 @@
+@import 'reset.css';
+@import 'variables';
+@import 'mixins';
+@import 'animations';
+
+
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+body { overflow: hidden }
+
+
+//  fonts settings
+
+html {
+  font: 16px $main-font;
+}
+
+h1.name {
+  font: $h1-menu-font-size $main-font;
+}
+
+h1.projects,
+h1.skills {
+  font: $h1-font-size $main-font;
+  color: $white;
+  line-height: $h1-font-size;
+  text-transform: uppercase;
+}
+
+h2 {
+  font: $h2-font-size $second-font;
+  font-weight: bold;
+}
+
+p {
+  font: $p-font-size $second-font;
+  color: $white;
+}
+
+.skills-wrapper,
+.projects-wrapper {
+  font-size: $global-font-size;
+}
+
+.year {
+  font-size: $year-font-size;
+  color: $cerise;
+}
+
+
+//  loader
+
+.loader {
+  @include clearfix();
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background-color: $white;
+
+  .loader-side {
+    position: absolute;
+    top: 50%;
+    width: 50%;
+    height: 6px;
+    overflow: hidden;
+
+    .loader-stripe {
+      position: absolute;
+      width: $loader-stripe-width;
+      height: 100%;
+      top: 0;
+    }
+  }
+
+  .loader-left {
+    left: 0;
+    background-color: #fff;
+
+    .loader-stripe-left {
+      left: 0;
+      animation: moveLoaderLeftStripe 1.8s linear alternate infinite;
+      background-color: $cyan;
+    }
+  }
+
+  .loader-right {
+    left: 50%;
+    background-color: #000;
+
+    .loader-stripe-right {
+      left: -50%;
+      animation: moveLoaderRightStripe 1.8s linear alternate infinite;
+      background-color: $cerise;
+    }
+  }
+}
+
+
+//  backgrounds
+
+.page {
+  width: 100%;
+  padding: $global-padding;
+}
+
+.main-page { @include page-background(mountains, $sm); background-attachment: fixed; }
+
+.projects-page { @include page-background(wall, $sm); }
+
+.skills-page { @include page-background(rocks, $sm); }
+
+.fixed-menu, .no-fix {
+  transition: all 0.6s ease;
+}
+
+
+//  fixed menu
+
+.fixed-menu {
+  @include position(fixed, left, top, 0, 0);
+  @include clearfix();
+  z-index: 50;
+  height: $fixed-menu-height;
+  width: 100%;
+  background-color: $black;
+}
+
+.fixed-menu .name-block {
+  display: inline-block;
+  float: left;
+  height: 100%;
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: $fixed-menu-top-padding 0 0 $global-padding;
+
+    h1.name {
+      line-height: $h1-menu-font-size;
+      letter-spacing: 10px;
+      text-transform: uppercase;
+      color: $white;
+    }
+  }
+}
+
+.menu-desktop {
+  display: none;
+}
+
+.fixed-menu .hamburger {
+  display: inline-block;
+  float: right;
+  height: 100%;
+  min-width: 30px;
+  padding: $hamburger-padding;
+  cursor: pointer;
+}
+
+
+//  hamburger
+
+.burger-top,
+.burger-middle,
+.burger-bottom {
+  border-radius: 2px;
+  height: $hamburger-line-height;
+}
+
+.burger-top,
+.burger-bottom { width: 30px; }
+
+.burger-middle { width: 20px; margin-left: 10px;}
+
+.burger-top,
+.burger-middle { margin-bottom: $hamburger-margin; }
+
+.burger-top { background-color: $cerise; }
+
+.burger-middle { background-color: $white; }
+
+.burger-bottom { background-color: $cyan; }
+
+.hamburger-toggle {
+  @include position(absolute, top, left, $fixed-menu-height, 0);
+  display: none;
+  height: $fixed-menu-height / 2;
+  width: 100%;
+
+  .menu-list {
+    display: table;
+    height: 100%;
+    width: 100%;
+
+    & > li {
+      display: table-cell;
+      width: 50%;
+      height: 100%;
+
+      & > a {
+        display: block;
+        height: 100%;
+        width: 100%;
+        color: $black;
+        text-align: center;
+        line-height: $fixed-menu-height / 2;
+      }
+    }
+  }
+}
+
+.burger-projects {
+  background-color: $cyan;
+}
+
+.burger-skills {
+  background-color: $cerise;
+}
+
+
+//  main-page
+
+.main-wrapper {
+  height: 100%;
+  max-width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.introduction-block {
+  @include block-with-overlapping-borders($introduction-block-height, 100%, $global-padding);
+  position: absolute;
+  top: 50%;
+  margin-top: -$introduction-block-height / 2;
+  background-color: $cerise;
+  text-align: center;
+}
+
+.introduction-block .photo {
+  display: block;
+  width: 120px;
+  height: 120px;
+  margin: 10px auto 0 auto;
+  border-radius: 50%;
+}
+
+.main-footer {
+  @include position(absolute, left, bottom, 0, 0);
+  width: 100%;
+
+  .year {
+    @include position(absolute, left, bottom, 0, 0);
+  }
+
+  .github {
+    @include position(absolute, right, bottom, 0, 0);
+    height: $github-icon;
+
+    a {
+      display: block;
+      height: $github-icon;
+      width: $github-icon;
+      background-image: url('../img/github.png');
+      background-size: contain;
+    }
+  }
+}
+
+
+//  PROJECTS
+
+.projects-wrapper {
+  position: relative;
+}
+
+h1.projects,
+h1.skills {
+  display: block;
+  margin: $fixed-menu-height 0 25px 0;
+}
+
+.project-header {
+  display: table;
+  width: 100%;
+  text-align: right;
+
+  h2 {
+    padding-left: 10px;
+    display: table-cell;
+    color: $white;
+    text-transform: uppercase;
+  }
+
+  .project-line {
+    display: table-cell;
+    width: 100%;
+    vertical-align: middle;
+
+    div {
+      width: 100%;
+      line-height: 2px;
+      background-color: $white;
+    }
+  }
+
+  .project-number {
+    display: table-cell;
+    position: relative;
+    height: $project-nav-height;
+    width: $project-nav-width;
+    vertical-align: middle;
+    text-align: center;
+
+    div {
+      width: inherit;
+      line-height: $project-nav-height;
+      background-color: $white;
+    }
+  }
+}
+
+.project-content {
+  margin-top: $global-padding;
+
+  img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.project-navigation {
+  width: 100%;
+  position: relative;
+  margin-top: $global-padding;
+
+  .project-prev,
+  .project-next {
+    display: block;
+    background-color: $white;
+    height: $project-nav-height;
+    width: $project-nav-width;
+    color: $black;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .project-prev {
+    @include position(absolute, left, top, 0, 0);
+  }
+
+  .project-next {
+    @include position(absolute, right, top, 0, 0);
+  }
+}
+
+.project-placeholder {
+  font-size: $global-font-size;
+  line-height: $global-font-size;
+  text-align: center;
+  background-color: $white;
+  color: $black;
+
+  span {
+    display: inline-block;
+  }
+}
+
+
+
+.project-image-active:before {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 15;
+  content: '';
+  background-color: $white;
+  opacity: 0.2;
+  animation-name: changeOpacity;
+  animation-duration: 0.2s;
+}
+
+.project-image-active:after {
+  position: absolute;
+  display: block;
+  width: $project-link-width;
+  height: 40px;
+  top: 50%;
+  left: 50%;
+  z-index: 20;
+  transform: translate(-$project-link-width / 2, -20px);
+  background-color: $cerise;
+  color: $white;
+  content: 'visit';
+  font-size: $global-font-size;
+  line-height: 40px;
+  text-align: center;
+}
+
+
+//  SKILLS
+
+.skills-content {
+  @include clearfix();
+  width: 100%;
+  color: $white;
+}
+
+.skill-block-container {
+  width: 50%;
+  float: left;
+  padding-bottom: $global-padding;
+  text-align: center;
+
+  &:nth-child(odd) { padding-right: $global-padding / 2; }
+
+  &:nth-child(even) { padding-left: $global-padding / 2; }
+
+}
+
+.skill-block {
+  height: $skill-block-height;
+  margin-bottom: 2px;
+  border: 2px solid $white;
+  line-height: $skill-block-height - 4px;
+  cursor: pointer;
+
+  &:first-child {
+    color: $black;
+    background-color: $white;
+    cursor: default;
+  }
+}
+
+.skills-notice {
+  color: $white;
+  font-size: $global-font-size;
+}
+
+
+.top-button {
+  @include position(fixed, left, bottom, 50%, $global-padding);
+  width: $project-nav-width;
+  height: $project-nav-height;
+  transform: translateX(-$project-nav-width / 2);
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: $global-font-size;
+    line-height: $project-nav-height;
+    text-align: center;
+    background-color: $white;
+    color: $black;
+
+    &:hover {
+      background-color: $black;
+      color: $white;
+    }
+  }
+}
+
+.project-link {
+  display: block;
+}
+
+
+// MEDIA
+@import 'media-sm';
+@import 'media-md';
+@import 'media-lg';
+@import 'media-xl';
