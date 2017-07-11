@@ -1,0 +1,13 @@
+@import 'variables';
+
+@media only screen and (min-width : 1260px) and (max-width : 1440px) and (min-height : 700px) and (max-height : 900px) {
+  .projects-wrapper {
+    max-width: 730px;
+  }
+}
+
+@media only screen and (min-width : 1420px) and (max-width : 1440px) and (min-height : 780px) and (max-height : 900px) {
+  .projects-wrapper {
+    max-width: 880px;
+  }
+}
